@@ -11,6 +11,8 @@ void loop() {
   double value4 = 7 * sin(2 * PI * time);
   double value5 = 6 * sin(2 * PI * time);
   double value6 = 5 * sin(2 * PI * time);
+  double value7 = 4 * sin(2 * PI * time);
+  double value8 = 3 * sin(2 * PI * time);
 
   
   // Enviar los datos en una sola línea, separados por comas
@@ -26,8 +28,12 @@ void loop() {
   Serial.print(",");       // Separador
   Serial.print(value5);   // Valor de la señal senoidal (Humidity_high)
   Serial.print(",");       // Separador
-  Serial.println(value6);   // Valor de la señal senoidal (Humidity_high)
+  Serial.print(value6);   // Valor de la señal senoidal (Humidity_high)
+  Serial.print(",");       // Separador
+  Serial.print(value7);   // Valor de la señal senoidal (Humidity_high)
+  Serial.print(",");       // Separador
+  Serial.println(value8);   // Valor de la señal senoidal (Humidity_high)
 
-  delay(1000);
+  delay(10);
 }
 

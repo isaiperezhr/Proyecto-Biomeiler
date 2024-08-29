@@ -10,3 +10,15 @@ C:\Users\Isaip\source\repos\Prueba02\Prueba02\obj\Debug\Prueba02.vbproj.CoreComp
 C:\Users\Isaip\source\repos\Prueba02\Prueba02\obj\Debug\Prueba02.exe
 C:\Users\Isaip\source\repos\Prueba02\Prueba02\obj\Debug\Prueba02.xml
 C:\Users\Isaip\source\repos\Prueba02\Prueba02\obj\Debug\Prueba02.pdb
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\bin\Debug\Prueba02.exe.config
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\bin\Debug\Prueba02.exe
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\bin\Debug\Prueba02.pdb
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\bin\Debug\Prueba02.xml
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.vbproj.AssemblyReference.cache
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.Form1.resources
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.Resources.resources
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.vbproj.GenerateResource.cache
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.vbproj.CoreCompileInputs.cache
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.exe
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.xml
+C:\Users\Isaip\Documents\ITESM\5°\ProyectoBiomeiler\HMI\Prueba02\obj\Debug\Prueba02.pdb

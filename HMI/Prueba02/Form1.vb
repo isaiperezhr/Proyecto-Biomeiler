@@ -7,6 +7,8 @@ Public Class Form1
     Dim HumidityLow As Double
     Dim HumidityHigh As Double
     Dim TemperatureAmb As Double
+    Dim TemperatureLow As Double
+    Dim TemperatureHigh As Double
     Dim pH As Double
     Dim FlowRate As Double
 
@@ -38,7 +40,11 @@ Public Class Form1
             BotonConectar.Text = "DESCONECTAR"
             Timer1.Enabled = True
             BotonControlBomba.Enabled = True
-            BotonControlBomba.BackColor = Color.Green
+            If BotonControlBomba.Text = "Apagar Bomba" Then
+                BotonControlBomba.BackColor = Color.Red
+            ElseIf BotonControlBomba.Text = "Encender Bomba" Then
+                BotonControlBomba.BackColor = Color.Green
+            End If
             SerialPort1.PortName = ComboPuertos.Text
             SerialPort1.DtrEnable = True ' Habilita el handshake DTR
             SerialPort1.Open()
@@ -46,6 +52,7 @@ Public Class Form1
             BotonConectar.BackColor = Color.Green
             BotonConectar.Text = "CONECTAR"
             Timer1.Enabled = False
+            BotonControlBomba.Enabled = False
             If SerialPort1.IsOpen Then
                 SerialPort1.Close()
             End If
@@ -83,7 +90,7 @@ Public Class Form1
                     Dim lines() As String = buffer.Split(New String() {vbLf}, StringSplitOptions.None)
                     For i As Integer = 0 To lines.Length - 2 ' Procesar todas las líneas completas
                         Dim dataLine As String = lines(i).Trim()
-                        If dataLine.Split(",").Length = 7 Then ' Verificar si la línea es válida
+                        If dataLine.Split(",").Length = 9 Then ' Verificar si la línea es válida
                             ParseData(dataLine)
                             graficasActualizadas = True
                         End If
@@ -107,20 +114,20 @@ Public Class Form1
         Dim values() As String = data.Split(",")
 
         ' Verificar si los datos recibidos tienen la cantidad correcta de valores
-        If values.Length = 7 Then
+        If values.Length = 9 Then
             Tiempo = Val(values(0))
             HumidityAmb = Val(values(1))
             TemperatureAmb = Val(values(2))
-            HumidityLow = Val(values(3))
-            HumidityHigh = Val(values(4))
-            FlowRate = Val(values(5))
-            pH = Val(values(6))
+            TemperatureLow = Val(values(3))
+            TemperatureHigh = Val(values(4))
+            HumidityLow = Val(values(5))
+            HumidityHigh = Val(values(6))
+            FlowRate = Val(values(7))
+            pH = Val(values(8))
         End If
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Timer1.Interval = 50
-
         ' Configura el chart cuando se carga el formulario
         ChartHumidity.Series.Clear()
         ChartTemp.Series.Clear()
@@ -136,7 +143,11 @@ Public Class Form1
         ChartHumidity.Series.Add(CrearSerie("HumidityAmb", Color.Green))
         ChartHumidity.Series.Add(CrearSerie("HumidityLow", Color.Blue))
         ChartHumidity.Series.Add(CrearSerie("HumidityHigh", Color.Red))
-        ChartTemp.Series.Add(CrearSerie("TemperatureAmb", Color.Red))
+        ChartTemp.Series.Add(CrearSerie("TemperatureAmb", Color.Green))
+        ChartTemp.Series.Add(CrearSerie("TemperatureLow", Color.Blue))
+        ChartTemp.Series.Add(CrearSerie("TemperatureHigh", Color.Red))
+        ChartFlow.Series.Add(CrearSerie("FlowRate", Color.Blue))
+        ChartpH.Series.Add(CrearSerie("pH", Color.Purple))
 
         ' Etiquetas de los ejes
         ChartHumidity.ChartAreas(0).AxisX.Title = "Tiempo (s)"
@@ -168,5 +179,13 @@ Public Class Form1
 
         ' Añadir datos a la Chart Temp
         ChartTemp.Series("TemperatureAmb").Points.AddXY(Tiempo, TemperatureAmb)
+        ChartTemp.Series("TemperatureLow").Points.AddXY(Tiempo, TemperatureLow)
+        ChartTemp.Series("TemperatureHigh").Points.AddXY(Tiempo, TemperatureHigh)
+
+        'Añadir datos a la Chart Flow
+        ChartFlow.Series("FlowRate").Points.AddXY(Tiempo, FlowRate)
+
+        'Añadir datos a la Chart pH
+        ChartpH.Series("pH").Points.AddXY(Tiempo, pH)
     End Sub
 End Class
