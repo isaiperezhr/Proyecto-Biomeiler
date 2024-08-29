@@ -1,8 +1,8 @@
 #include <WiFiS3.h>
 
-const char* WIFI_SSID = "Totalplay-2.4G-f060";
-const char* WIFI_PASSWORD = "jkkEu6JEfnfB3tQh";
-const char* TCP_SERVER_ADDR = "192.168.100.22";
+const char* WIFI_SSID = "";
+const char* WIFI_PASSWORD = "";
+const char* TCP_SERVER_ADDR = "";
 const int TCP_SERVER_PORT = 5000;
 
 WiFiClient TCP_client;
