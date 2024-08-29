@@ -1,0 +1,16 @@
+# Ignorar archivos y carpetas de Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+
+# Ignorar archivos de configuración local
+*.local
+
+# Ignorar archivos de compilación
+*.exe
+*.dll
+*.pdb
