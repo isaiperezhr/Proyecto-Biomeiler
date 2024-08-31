@@ -1,10 +1,10 @@
-const int dry1 = 785;
-const int wet1 = 370;
+const int dry1 = 461;
+const int wet1 = 158;
 float humidity1;  // Declarar la variable humidity
 float percentageHumidity1;
 
-const int dry2 = 785;
-const int wet2 = 360;
+const int dry2 = 472;
+const int wet2 = 187;
 float humidity2;  // Declarar la variable humidity
 float percentageHumidity2;
 

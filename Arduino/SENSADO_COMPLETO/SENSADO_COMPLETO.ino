@@ -19,19 +19,19 @@ float calibrationFactor = 7.5; // Factor de calibración ajustable
 float flowRate = 0;         // Tasa de flujo de agua
 
 // Variables sensor humedad inferior
-const int DRY1 = 785;
-const int WET1 = 370;
+const int DRY1 = 461;
+const int WET1 = 158;
 float humidity1;            // Valor de humedad
 float percentageHumidity1;  // Porcentaje de humedad
 
 // Variables sensor humedad superior
-const int DRY2 = 785;
-const int WET2 = 360;
+const int DRY2 = 472;
+const int WET2 = 187;
 float humidity2;            // Valor de humedad
 float percentageHumidity2;  // Porcentaje de humedad
 
 // Variables sensor pH
-float calibration_value = 21.34;
+float calibration_value = 23.37;
 unsigned long int avgval; 
 int buffer_arr[10], temp;
 
@@ -80,10 +80,15 @@ void soil_humidity() {
   percentageHumidity1 = map(humidity1, WET1, DRY1, 100, 0);
   percentageHumidity2 = map(humidity2, WET2, DRY2, 100, 0);
 
+  // Asegurarse de que los valores estén dentro del rango 0-100%
+  percentageHumidity1 = constrain(percentageHumidity1, 0, 100);
+  percentageHumidity2 = constrain(percentageHumidity2, 0, 100);
+
   // Imprimir valores de humedad del suelo
   Serial.print(percentageHumidity1); Serial.print(",");
   Serial.print(percentageHumidity2); Serial.print(",");
 }
+
 
 void flujo_agua() {
   // Calcular la tasa de flujo en L/min
@@ -97,15 +102,15 @@ void increase() {
 }
 
 void ph_meter() {
-  // Leer valores del sensor de pH
-  for(int i = 0; i < 10; i++) { 
+  // Leer 10 valores y almacenarlos en buffer_arr
+  for(int i=0; i<10; i++) { 
     buffer_arr[i] = analogRead(A2);
     delay(30);
   }
 
-  // Ordenar los valores leídos
-  for(int i = 0; i < 9; i++) {
-    for(int j = i + 1; j < 10; j++) {
+  // Ordenar el array para filtrar valores atípicos
+  for(int i=0; i<9; i++) {
+    for(int j=i+1; j<10; j++) {
       if(buffer_arr[i] > buffer_arr[j]) {
         temp = buffer_arr[i];
         buffer_arr[i] = buffer_arr[j];
@@ -114,14 +119,18 @@ void ph_meter() {
     }
   }
 
+  // Calcular el promedio de los valores intermedios (descartando los extremos)
   avgval = 0;
-
-  // Promediar los valores del sensor de pH
-  for(int i = 2; i < 8; i++)
+  for(int i=2; i<8; i++) {
     avgval += buffer_arr[i];
+  }
   
+  // Conversión a voltios
   float volt = (float)avgval * 5.0 / 1024 / 6;
+  
+  // Calcular el pH
   float ph_act = -5.70 * volt + calibration_value;
+
   Serial.print(ph_act); Serial.println();
 }
 
@@ -142,6 +151,8 @@ void loop() {
   if (millis() - oldTime > 670) {
     Serial.print(millis() * 0.001); Serial.print(",");
     ambiental();
+    Serial.print("hola"); Serial.print(",");
+    Serial.print("hola"); Serial.print(",");
     soil_humidity();
     flujo_agua();
     ph_meter();
