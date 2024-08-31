@@ -20,13 +20,13 @@ float flowRate = 0;         // Tasa de flujo de agua
 
 // Variables sensor humedad inferior
 const int DRY1 = 461;
-const int WET1 = 158;
+const int WET1 = 135;
 float humidity1;            // Valor de humedad
 float percentageHumidity1;  // Porcentaje de humedad
 
 // Variables sensor humedad superior
 const int DRY2 = 472;
-const int WET2 = 187;
+const int WET2 = 172;
 float humidity2;            // Valor de humedad
 float percentageHumidity2;  // Porcentaje de humedad
 
